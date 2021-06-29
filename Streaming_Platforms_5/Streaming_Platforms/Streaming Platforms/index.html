@@ -1,0 +1,594 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<title>Streaming Platforms</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="code/css/main.css" />
+		<noscript><link rel="stylesheet" href="code/css/noscript.css" /></noscript>
+		<link rel="icon" href="images/SP_BlackWhite2.png">
+		<script src="code/js/TwitchAPI.js"></script>
+	</head>
+	<body class="is-preload">
+
+	<style>
+	#p.normal {
+		font-weight: normal;
+	}
+
+	#p.thick{
+		font-weight: bold;
+	}
+	</style>
+
+		<script>
+			window.onload = function (){
+
+				GetGames();
+				GetMostWatchedStreamer();
+				GetClips();
+			};
+		  </script>
+
+
+
+			<div id="wrapper">
+					<header id="header">
+						<div class="logo">
+							</centerY><img src="images/SPLogoWhite.png" height="90" width="90"; img style = "display: block; text-align: center;">
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>Streaming Platforms</h1>
+								<p>This website contains general information about streaming and <br/> a statistic about twitch the live streaming platform</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#streaming">Streaming</a></li>
+								<li><a href="#twitchStatistics">Twitch statistics</a></li>
+								<li><a href="#aboutUs">About us</a></li>
+							</ul>
+						</nav>
+					</header>
+
+					<div id="twStat">
+						<div id="headerBox">
+							<h1 style="margin-left: 1em; margin-top: 0.2em; text-shadow: 2px 2px 1px rebeccapurple"><strong>Twitch Statistics   |</strong></h1>
+							
+							
+						</div>
+
+						<article id="twitchStatistics">
+
+							<ul class="actions">
+								<li style="margin-left: 35em; margin-top: -8.7em; text-shadow: 0.5px 0.5px 1px rebeccapurple;"><a onclick="showStreamer();" class="button primary">Live Channels</a></li>
+								
+							</ul>
+
+							<ul class="actions">
+								<li style="margin-left: 48em; margin-top: -8.7em; text-shadow: 0.5px 0.5px 1px rebeccapurple"><a onclick="showGames();" class="button primary">Games</a></li>
+							</ul>
+
+							<ul class="actions">
+								<li style="margin-left: 57em; margin-top: -8.7em; text-shadow: 0.5px 0.5px 1px rebeccapurple"><a onclick="showClips();" class="button primary">Clips</a></li>
+							</ul>
+
+							<div id="GameCon">
+								<h2 class="major"; style="margin-left: 2em; margin-bottom: 0em; text-shadow: 4px 5px 1px black; color: lightgoldenrodyellow">Current Most Watched Games</h2>
+							<h4 id="Date" style="margin-left: 3.8em; margin-top: 1em; color: lightsteelblue; text-shadow: 2px 3px 1px black;"></h4>
+								<script>var today = new Date();
+									var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+									var dateTime = date;
+													document.getElementById("Date").innerHTML="Date:  " + dateTime;</script>
+								
+							<body style="background-color: #333;">
+								<div class="searchresults">
+								  <div id="searchresults" class="container" style="margin-top: 3em; padding: 0em 9em;">
+									<div id="loading" class="loadingtmp">
+									  <div class="result">
+										<div class="row">
+										  <div class="col col-lg-3">
+											<div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+										  </div>
+										  <div class="col">
+											<div class="text">
+											  <div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											</div>
+										  </div>
+										</div>
+										<div class="underline">
+										  <div>
+											<div class="loading"></div>
+										  </div>
+										</div>
+									  </div>
+							
+									<div style="clear: both; margin-top: 3em;"></div>
+							
+									  <div class="result" style="animation-delay: 0.2s;">
+										<div class="row">
+										  <div class="col col-lg-3">
+											<div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+										  </div>
+										  <div class="col">
+											<div class="text">
+											  <div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											</div>
+										  </div>
+										</div>
+										<div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+										  <div>
+											<div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+										  </div>
+										</div>
+									  </div>
+							
+									<div style="clear: both; margin-top: 3em;"></div>
+							
+									  <div class="result" style="animation-delay: 0.4s;">
+										<div class="row">
+										  <div class="col col-lg-3">
+											<div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+										  </div>
+										  <div class="col">
+											<div class="text">
+											  <div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											</div>
+										  </div>
+										</div>
+										<div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+										  <div>
+											<div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+										  </div>
+										</div>
+									  </div>
+							
+									<div style="clear: both; margin-top: 3em;"></div>
+							
+									  <div class="result" style="animation-delay: 0.6s;">
+										<div class="row">
+										  <div class="col col-lg-3">
+											<div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+										  </div>
+										  <div class="col">
+											<div class="text">
+											  <div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											</div>
+										  </div>
+										</div>
+										<div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+										  <div>
+											<div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+										  </div>
+										</div>
+									  </div>
+							
+									<div  style="clear: both; margin-top: 3em;  "></div>
+							
+									  <div class="result" style="animation-delay: 0.8s;">
+										<div class="row">
+										  <div class="col col-lg-3">
+											<div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+										  </div>
+										  <div class="col">
+											<div class="text">
+											  <div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+											  <div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											</div>
+										  </div>
+										</div>
+										<div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+										  <div>
+											<div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+								  </div>
+								  <div class="templates">
+											<!-- ResultTemplate -->
+										  <div id="s_result" class="result">
+											<div class="row">
+											  <div class="col col-lg-3">
+												<div class="image"  style="box-shadow: 5px 3px 4px black;">
+												  <img id="s_cover" src="" alt="">
+												</div>
+											  </div>
+											  <div class="col">
+												<div class="text">
+												  <h2 id="s_title" style="text-shadow: 5px 3px 4px black;"></h2>
+												  <p id="s_description" style="margin-left: 1em;"></p>
+												</div>
+											  </div>
+											</div>
+											<div class="underline">
+											  <div>
+												  <p id="s_id"></p>
+											  </div>
+											</div>
+										  </div>
+								  </div>
+								</div>	
+
+							
+									
+							<div id = "GetGames"></div>
+
+                            <script> GetGames() </script>
+							</div>
+
+							<div id="ChannelCon" style="display: none;">
+								<h2 style="margin-left: 2em; margin-bottom: 0em; text-shadow: 4px 5px 1px black; color: lightgoldenrodyellow">Current most viewed Streamer</h2>
+								<h2 class="major"; style="margin-left: 2em; margin-bottom: 0em; text-shadow: 4px 5px 1px black; color: lightgoldenrodyellow">Ranked By Viewers</h2>
+								<h4 id="Date2" style="margin-left: 3.8em; margin-top: 1em; color: lightsteelblue; text-shadow: 2px 3px 1px black;"></h4>
+								<script>var today = new Date();
+									var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+									var dateTime = date;
+													document.getElementById("Date2").innerHTML="Date:  " + dateTime;</script>
+								
+								<div class="searchresults">
+									<div id="searchresults2" class="container" style="margin-top: 3em; padding: 0em 9em;">
+									  <div id="loading" class="loadingtmp">
+										<div class="result">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline">
+											<div>
+											  <div class="loading"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div style="clear: both; margin-top: 3em;"></div>
+							  
+										<div class="result" style="animation-delay: 0.2s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div style="clear: both; margin-top: 3em;"></div>
+							  
+										<div class="result" style="animation-delay: 0.4s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div style="clear: both; margin-top: 3em;"></div>
+							  
+										<div class="result" style="animation-delay: 0.6s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div  style="clear: both; margin-top: 3em;  "></div>
+							  
+										<div class="result" style="animation-delay: 0.8s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+									<div class="templates">
+											  <!-- ResultTemplate -->
+											<div id="s_result" class="result">
+											  <div class="row">
+												<div class="col col-lg-3">
+												  <div class="image"  style="box-shadow: 5px 3px 4px black;">
+													<img id="s_cover" src="" alt="">
+												  </div>
+												</div>
+												<div class="col">
+												  <div class="text">
+													<h2 id="s_title" style="text-shadow: 5px 3px 4px black;"></h2>
+													<p id="s_description" style="margin-left: 1em;"></p>
+												  </div>
+												</div>
+											  </div>
+											  <div class="underline">
+												<div>
+													<p id="s_id"></p>
+												</div>
+											  </div>
+											</div>
+									</div>
+								  </div>	
+							
+								<div id = "GetMostWatchedStreamer"></div>
+								<script> GetMostWatchedStreamer()</script>
+
+							</div>
+
+
+							
+							<div id="ClipsCon">
+
+								<h2 style="margin-left: 2em; margin-bottom: 0em; text-shadow: 4px 5px 1px black; color: lightgoldenrodyellow">Most watched clips</h2>
+								<h2 class="major"; style="margin-left: 2em; margin-bottom: 0em; text-shadow: 4px 5px 1px black; color: lightgoldenrodyellow">From most viewed categories</h2>
+								<h4 id="Date3" style="margin-left: 3.8em; margin-top: 1em; color: lightsteelblue; text-shadow: 2px 3px 1px black;"></h4>
+								<script>var today = new Date();
+									var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+									var dateTime = date;
+													document.getElementById("Date3").innerHTML="Date:  " + dateTime;</script>
+								
+								<div class="searchresults">
+									<div id="searchresults3" class="container" style="margin-top: 3em; padding: 0em 9em;">
+									  <div id="loading" class="loadingtmp">
+										<div class="result">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline">
+											<div>
+											  <div class="loading"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div style="clear: both; margin-top: 3em;"></div>
+							  
+										<div class="result" style="animation-delay: 0.2s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div style="clear: both; margin-top: 3em;"></div>
+							  
+										<div class="result" style="animation-delay: 0.4s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div style="clear: both; margin-top: 3em;"></div>
+							  
+										<div class="result" style="animation-delay: 0.6s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+							  
+									  <div  style="clear: both; margin-top: 3em;  "></div>
+							  
+										<div class="result" style="animation-delay: 0.8s;">
+										  <div class="row">
+											<div class="col col-lg-3">
+											  <div class="loading" style="border-radius: 0.5em; width: 100%; height: 120%; background-color: #222;"></div>
+											</div>
+											<div class="col">
+											  <div class="text">
+												<div class="loading" style="margin-top: 0.5em; border-radius: 0.5em; width: 10em; height: 3em; background-color: #222;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 40em; height: 1.5em; background-color: #444;"></div>
+												<div class="loading" style="margin-top: 0.5em; margin-left: 1em; border-radius: 0.5em; width: 15em; height: 1.5em; background-color: #444;"></div>
+											  </div>
+											</div>
+										  </div>
+										  <div class="underline" style="padding: 0em 2em; width: 100%; display: block;">
+											<div>
+											  <div class="loading" style="float: right; border-radius: 0.5em; width: 7em; height: 1.5em; background-color: #222;"></div>
+											</div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+									<div class="templates">
+											  <!-- ResultTemplate -->
+											<div id="s_result" class="result">
+											  <div class="row">
+												<div class="col col-lg-3">
+												  <div class="image"  style="box-shadow: 5px 3px 4px black;">
+													<img id="s_cover" src="" alt="">
+												  </div>
+												</div>
+												<div class="col">
+												  <div class="text">
+													<h2 id="s_title"></h2>
+													<p id="s_description" style="margin-left: 1em;"></p>
+												  </div>
+												</div>
+											  </div>
+											  <div class="underline">
+												<div>
+													<p id="s_id"></p>
+												</div>
+											  </div>
+											</div>
+									</div>
+								  </div>	
+
+								<div id= "GetClips"></div>
+								<script >GetClips()</script>
+							</div>
+							
+
+                                <p style="margin-top:-2rem"></p>
+						</article>
+					
+					</div>
+
+					
+
+					<div id="main">
+						<article id="streaming">
+							<h2 class="major">Streaming</h2>
+							
+							<p>The first websites were simple pages of text with maybe an image or two. Today, however, anyone with a fast enough Internet connection can stream high-definition movies or make a video call over the Internet. This is possible because of a technology called streaming.
+								Streaming is the continuous transmission of audio or video files from a server to a client. In simpler terms, streaming is what happens when consumers watch TV or listen to podcasts on Internet-connected devices. With streaming, the media file being played on the client device is stored remotely, and is transmitted a few seconds at a time over the Internet.</p>
+
+								<h2>How does streaming work?</h2>
+									<p>Just like other data that's sent over the Internet, audio and video data is broken down into data packets. Each packet contains a small piece of the file, and an audio or video player in the browser on the client device takes the flow of data packets and interprets them as video or audio.</p>
+
+									<h2>History of Streaming</h2>
+									<p>Streaming basically exists since 1950. To be mentioned streaming didn't progress at all due to expensive technology and limited computerhardware capacity.</p>
+									<p>End of the 1980s computer got powerful enough to show several streams. The only requirements were a strong CPU and enough bandwidth which was not common for the average population</p>
+									<p>In the late 1990s the access to the internet was made easier. Furthermore, during the early 2000s users had access to increased network bandwidth. Usage of standard protocols and formats increased, such as TCP/IP,HTTP,HTML as the internet became increasingly commercialized. These circumstances facilitated streaming content to computer user in their homes and workplaces.</p>
+									<p>As result On-demand services like YouTube were made available to the masses. Livestreaming established itself and in the corporate sector there was video conferencing </p>
+
+									<h2>Required Software</h2>
+									<p>To be able to use Streaming-Platform-Offers the receiver needs a specific software. It can either be a Plug-in which is integrated in a webbrowser or an indipendent player program, such as MP4, MP3, AVI and more. </p> 
+									<p>The Plug-in and the player program are usually being offered for free. However, the streaming server who sends the data must be purchased, such as OBS, ngnix, Kodi and more.  </p>
+
+									<h2>What is buffering?</h2>
+								<p>Streaming media players load a few seconds of the stream ahead of time so that the video or audio can continue playing if the connection is briefly interrupted. This is known as buffering. Buffering ensures that videos can play smoothly and continuously. However, over slow connections, or if a network has a great deal of latency, a video can take a long time to buffer.</p>
+
+								<h2></h2>
+						</article>
+
+						
+
+						<article id="aboutUs">
+							<h2 class="major">About Us</h2>
+							
+							<p>We are two 16 year old students who are currently visting the higher technical school of informatics in Leonding. This is our first HTML, JavaScript, CSS Based project</p>
+						</article>
+					</div>
+
+					<footer id="footer">
+						<p class="copyright">&copy; Streaming Platforms.</p>
+					</footer>
+
+			</div>
+
+			<div id="bg"></div>
+			<script src="code/js/jquery.min.js"></script>
+			<script src="code/js/browser.min.js"></script>
+			<script src="code/js/breakpoints.min.js"></script>
+			<script src="code/js/util.js"></script>
+			<script src="code/js/main.js"></script>
+			
+
+	</body>
+</html>
